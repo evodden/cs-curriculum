@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     float xspeed;
     float xdirection;
     float xvector;
-    float CoinAmount;
     float yspeed;
     float ydirection;
     float yvector;
@@ -20,7 +19,6 @@ public class PlayerController : MonoBehaviour
         //
         GetComponentInChildren<TopDown_AnimatorController>().enabled = overworld;
         GetComponentInChildren<Platformer_AnimatorController>().enabled = !overworld; //what do you think ! means?
-        CoinAmount = 0;
         xspeed = 5;
         yspeed = 5;
         if (overworld)
@@ -43,15 +41,7 @@ public class PlayerController : MonoBehaviour
         yvector = yspeed * ydirection * Time.deltaTime;
         transform.Translate(0, yvector, 0);
     }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.gameObject.CompareTag("Coin"))
-        {
-            CoinAmount = CoinAmount + 1;
-            Destroy(other.gameObject);
-            print("You have " + CoinAmount + " Coins.");
-        }
-    }
+    
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Wall"))
