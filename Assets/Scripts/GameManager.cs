@@ -1,11 +1,17 @@
+using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager gm;
-    public int coinAmount;
+    public int coinAmount = 0;
+    public int health = 100;
 
-    public int health;
+    public TextMeshProUGUI coinTest;
+    public TextMeshProUGUI healthTest;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -20,6 +26,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        coinTest.text = "Coins: " + coinAmount;
+        healthTest.text = "Health: " + health;
+    }
 
-
+    private void Update()
+    {
+        coinTest.text = "Coins: " + coinAmount;   
+        healthTest.text = "Health: " + health;
+    }
 }
+
+   
+    
+
+
