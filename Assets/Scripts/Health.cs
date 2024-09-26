@@ -23,7 +23,7 @@ public class Health : MonoBehaviour
         if (other.gameObject.CompareTag("Spikes"))
         {
             gm.health -= 5;
-            
+            gm.health = Mathf.Clamp(gm.health, 0, 100);
         }
     }
 }
