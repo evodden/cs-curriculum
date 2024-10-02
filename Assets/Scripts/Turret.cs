@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    private GameObject Target;
-    private GameObject Projectile;
+    
+    public GameObject Projectile;
 
     private float Firerate = 2;
     private float cooldown;
@@ -13,8 +13,8 @@ public class Turret : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && cooldown < 0)
         {
             GameObject clone = Instantiate(Projectile);
-            Projectile clonescript = clone.GetComponent+<Projectile>();
-            clonescript.target = other.transform.position;
+            Projectile script = clone.GetComponent<Projectile>();
+            script.target = other.gameObject.transform.position;
             cooldown = Firerate;
         }
     }
