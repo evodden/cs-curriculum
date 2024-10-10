@@ -8,11 +8,11 @@ public class Turret : MonoBehaviour
     private float Firerate = 2;
     private float cooldown;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void OnTriggerStay(Collider other)
+    void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player") && cooldown < 0)
+        if (other.CompareTag("Player") && cooldown < 0)
         {
-            GameObject clone = Instantiate(Projectile);
+            GameObject clone = Instantiate(Projectile, transform.position, Quaternion.identity);
             Projectile script = clone.GetComponent<Projectile>();
             script.target = other.gameObject.transform.position;
             cooldown = Firerate;

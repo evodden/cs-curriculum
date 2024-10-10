@@ -25,5 +25,8 @@ public class Health : MonoBehaviour
             gm.health -= 5;
             gm.health = Mathf.Clamp(gm.health, 0, 100);
         }
+
+       
     }
+    
 }
