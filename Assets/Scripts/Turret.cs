@@ -5,7 +5,7 @@ public class Turret : MonoBehaviour
     
     public GameObject Projectile;
 
-    private float Firerate = 2;
+    private float Firerate = 1.8f;
     private float cooldown;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void OnTriggerStay2D(Collider2D other)
