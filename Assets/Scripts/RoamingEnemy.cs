@@ -77,11 +77,11 @@ public class RoamingEnemy : MonoBehaviour
         return new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle));
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Player") && canAttack)
+        if (other.gameObject.CompareTag("Player") && canAttack)
         {
-            AttackPlayer(collision.gameObject);
+            AttackPlayer(other.gameObject);
         }
     }
     
