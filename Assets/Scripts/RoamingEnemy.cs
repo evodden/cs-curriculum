@@ -90,9 +90,9 @@ public class RoamingEnemy : MonoBehaviour
         if (gm != null)
         {
             gm.health -= enemyDamage;
-            
+            gm.enemyAttack = true;
             canAttack = false;
-            Invoke(nameof(ResetAttack), attackCooldown);  // Reset attack after cooldown
+            Invoke(nameof(ResetAttack), attackCooldown);  
         }
         
     }
@@ -100,6 +100,7 @@ public class RoamingEnemy : MonoBehaviour
     void ResetAttack()
     {
         canAttack = true;
+        gm.enemyAttack = false;
     }
     
 }

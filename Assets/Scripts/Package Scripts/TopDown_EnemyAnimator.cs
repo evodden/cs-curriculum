@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class TopDown_EnemyAnimator : MonoBehaviour
 {
-    public bool IsAttacking { get; private set; }
+    
 
     Vector3 prevPos;
     Animator anim;
-
+    GameManager gm;
+    public float animCooldown = 1.0f;
+    private bool canPlay = true;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        gm = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -45,17 +48,25 @@ public class TopDown_EnemyAnimator : MonoBehaviour
 
         prevPos = transform.position;
 
-        if (Input.GetMouseButton(0))
+        if (gm.enemyAttack == true && canPlay)
         {
             Attack();
         }
 
-        IsAttacking = anim.GetCurrentAnimatorStateInfo(0).IsTag("Attack");
+        
     }
 
     // Call this function from another script for the orc to attack!
+    // ReSharper disable Unity.PerformanceAnalysis
     public void Attack()
     {
         anim.SetTrigger("Attack");
+        canPlay = false;
+        Invoke(nameof(ResetAnim), animCooldown);  
+    }
+    
+    void ResetAnim()
+    {
+        canPlay = true;
     }
 }
