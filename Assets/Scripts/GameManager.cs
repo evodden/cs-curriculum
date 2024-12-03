@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI healthTest;
     public bool enemyAttack = false;
 
+    public bool enemyDead = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {

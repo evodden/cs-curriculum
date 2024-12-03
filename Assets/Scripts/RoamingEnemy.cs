@@ -102,7 +102,15 @@ public class RoamingEnemy : MonoBehaviour
         canAttack = true;
         gm.enemyAttack = false;
     }
-    
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Spikes"))
+        {
+            Destroy(gameObject);
+            print("A door has opened.");
+            gm.enemyDead = true;
+        }
+    }
 }
 
 
