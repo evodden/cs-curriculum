@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    float jumpspeed;
     float xspeed;
     float xdirection;
     float xvector;
@@ -12,8 +13,8 @@ public class PlayerController : MonoBehaviour
     float ydirection;
     float yvector;
     Rigidbody2D rb;
-    public bool overworld; 
-    
+    public bool overworld;
+    private bool canJump;
     private void Start()
     {
         //
@@ -24,10 +25,12 @@ public class PlayerController : MonoBehaviour
         if (overworld)
         {
             GetComponent<Rigidbody2D>().gravityScale = 0f;
+            canJump = false;
         }
         else
         {
             GetComponent<Rigidbody2D>().gravityScale = 1;
+            canJump = true;
         }
     }
 
@@ -49,11 +52,9 @@ public class PlayerController : MonoBehaviour
             print("You hit a wall.");
         }
     }
-    //for organization, put other built-in Unity functions here
 
-
-
-
-
-    //after all Unity functions, your own functions can go here
+    private void Jump()
+    {
+        
+    }
 }
