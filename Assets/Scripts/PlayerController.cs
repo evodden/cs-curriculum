@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     public bool overworld;
     private bool canJump;
-    private bool isGrounded;
+    public bool isGrounded;
    
     public Transform groundCheck; // A point at the bottom of the player to check ground
     public LayerMask groundLayer; // Layer to detect as "ground"
@@ -36,8 +36,9 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            GetComponent<Rigidbody2D>().gravityScale = 1;
+            GetComponent<Rigidbody2D>().gravityScale = 2;
             canJump = true;
+            yspeed = 0;
         }
     }
 
@@ -57,7 +58,7 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
         
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.5f, groundLayer);
         Debug.Log("is grounded" + isGrounded);
     }
     
