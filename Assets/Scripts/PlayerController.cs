@@ -15,13 +15,20 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     public bool overworld;
     private bool canJump;
+    private bool isGrounded;
+   
+    public Transform groundCheck; // A point at the bottom of the player to check ground
+    public LayerMask groundLayer; // Layer to detect as "ground"
+    
     private void Start()
     {
-        //
+        rb = GetComponent<Rigidbody2D>(); // Initialize Rigidbody2D
+
         GetComponentInChildren<TopDown_AnimatorController>().enabled = overworld;
         GetComponentInChildren<Platformer_AnimatorController>().enabled = !overworld; //what do you think ! means?
         xspeed = 5;
         yspeed = 5;
+        jumpspeed = 10f;
         if (overworld)
         {
             GetComponent<Rigidbody2D>().gravityScale = 0f;
@@ -43,7 +50,17 @@ public class PlayerController : MonoBehaviour
         ydirection = Input.GetAxis("Vertical");
         yvector = yspeed * ydirection * Time.deltaTime;
         transform.Translate(0, yvector, 0);
+        
+        if (canJump && isGrounded && Input.GetButtonDown("Jump"))
+        {
+            Debug.Log("jump pressed");
+            Jump();
+        }
+        
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        Debug.Log("is grounded" + isGrounded);
     }
+    
     
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -53,8 +70,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Jump()
+    private void Jump()    
     {
+        if (isGrounded)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpspeed);          
+        }
         
     }
 }
